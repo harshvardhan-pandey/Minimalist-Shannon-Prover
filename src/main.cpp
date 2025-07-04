@@ -1,23 +1,35 @@
 #include "entropy_utils.hpp"
-#include "shannon_generator.hpp"
+#include "inequality_utils.hpp"
+#include "user_constraint_parser.hpp"
+
 #include <iostream>
+#include <vector>
+#include <string>
 
 int main() {
+    // Define variable names
     std::vector<std::string> vars = {"X", "Y", "Z"};
     EntropyIndexer indexer(vars);
 
-    auto inequalities = generate_shannon_inequalities(indexer);
-    std::cout << "Generated " << inequalities.size() << " Shannon-type inequalities.\n";
+    std::vector<std::string> inputs = {
+        "H(X) <= 1",
+        "H(X,Y) = 0",
+        "H(X|Y) = 0",
+        "I(X;Y) >= 1",
+        "I(X;Z|Y) = 0"
+    };
 
-    for (size_t i = 0; i < inequalities.size(); ++i) {
-        const auto& ineq = inequalities[i];
-        std::cout << "Inequality " << i+1 << ": ";
-        for (size_t j = 0; j < ineq.coeffs.size(); ++j) {
-            if (ineq.coeffs[j] != 0) {
-                std::cout << ineq.coeffs[j] << "*H(" << indexer.bitmask_to_str(j+1) << ") ";
+    for (const auto& in : inputs) {
+        std::cout << "Parsing: " << in << "\n";
+        std::vector<Inequality> parsed;
+        if (parse_user_constraint(in, indexer, parsed)) {
+            for (const auto& ineq : parsed) {
+                print_inequality(ineq, indexer);
             }
+        } else {
+            std::cerr << "Failed to parse: " << in << "\n";
         }
-        std::cout << "≥ " << ineq.rhs << "\n";
+        std::cout << "-----------------------\n";
     }
 
     return 0;
