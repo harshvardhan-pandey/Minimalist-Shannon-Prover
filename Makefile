@@ -7,7 +7,7 @@ LDLIBS = -lglpk
 PKG_CONFIG_PATH ?= /usr/lib/x86_64-linux-gnu/pkgconfig
 
 # Source and output
-SRC = main.cpp src/entropy_utils.cpp src/inequality_utils.cpp src/shannon_generator.cpp src/user_constraint_parser.cpp
+SRC = main.cpp src/entropy_utils.cpp src/inequality_utils.cpp src/shannon_generator.cpp src/parser.cpp src/glpk_solver.cpp
 INC = -Iinclude
 TARGET = itip
 
