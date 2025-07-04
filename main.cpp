@@ -1,6 +1,6 @@
-#include "entropy_utils.hpp"
-#include "inequality_utils.hpp"
-#include "user_constraint_parser.hpp"
+#include "include/entropy_utils.hpp"
+#include "include/inequality_utils.hpp"
+#include "include/user_constraint_parser.hpp"
 
 #include <iostream>
 #include <vector>

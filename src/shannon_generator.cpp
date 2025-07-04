@@ -1,4 +1,4 @@
-#include "shannon_generator.hpp"
+#include "../include/shannon_generator.hpp"
 #include <bitset>
 #include <cassert>
 
