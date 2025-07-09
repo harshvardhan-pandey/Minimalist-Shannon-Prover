@@ -1,0 +1,4 @@
+I(A;B,C,D) = 0
+I(B;A,D,C) = 0
+I(C;A,B,D) = 0
+I(D;A,B,C) = 0

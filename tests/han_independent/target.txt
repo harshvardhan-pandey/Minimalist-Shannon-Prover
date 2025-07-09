@@ -1,0 +1,1 @@
+3H(A,B,C,D) - H(A,B,C) - H(A,B,D) - H(A,C,D) - H(B,C,D) >= 0
